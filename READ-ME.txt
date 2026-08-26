@@ -1,0 +1,137 @@
+NGALAMBELA - Corporate Website
+==============================
+A professional corporate website for Ngalambela, a company specializing in the sale, manufacturing, calibration, maintenance, and distribution of weighing scales across Tanzania.
+
+FEATURES
+--------
+- 8 main sections: Home, About, Services, Products, Projects, Blog, Testimonials, Contact
+- Bilingual support (English & Kiswahili) - switchable from any page
+- Mobile-friendly responsive design
+- SEO-ready with meta tags and structured content
+- Full Admin Dashboard with PHP/MySQL backend
+- Blog management with bilingual posts
+- Product catalog with categories and featured items
+- Project portfolio with filtering
+- Testimonial management with star ratings
+- Contact form with inquiry management
+- Newsletter subscription
+- YouTube video management (paste links, stream from YouTube)
+- Website settings management (company info, contact, social media, homepage content)
+- Media management (logos, banners, images)
+- Secure admin authentication
+
+SYSTEM REQUIREMENTS
+-------------------
+- Web server: Apache with mod_rewrite enabled (or Nginx)
+- PHP 7.4 or higher
+- MySQL 5.7 or higher / MariaDB 10.3+
+- PHP extensions: mysqli, gd, mbstring
+
+INSTALLATION
+------------
+1. Copy all files to your web server directory (e.g., /var/www/html/ngalambela)
+
+2. Configure database connection:
+   - Edit config/database.php
+   - Update DB_HOST, DB_USER, DB_PASS as needed
+   - Default: localhost / root / empty password
+
+3. Run the installer:
+   - Open http://your-domain.com/config/install.php in your browser
+   - This will create the database and all tables automatically
+   - Default admin login: admin@ngalambela.co.tz / admin123
+
+4. Set file permissions:
+   - Make the 'uploads' directory writable: chmod 755 uploads
+   - Ensure PHP has write access to uploads folder
+
+5. Access the website:
+   - Frontend: http://your-domain.com/
+   - Admin Dashboard: http://your-domain.com/admin/
+   - Login: admin@ngalambela.co.tz / admin123
+
+6. Configure site settings:
+   - Log in to admin dashboard
+   - Go to Settings to update company info, contact details, social media
+   - Go to Page Content to update homepage text
+   - Upload logo and images in Settings > Logo & Images
+
+LANGUAGE SYSTEM
+---------------
+- English and Kiswahili are fully supported
+- Switch languages using the dropdown in the top navigation bar
+- Language selection persists in session across all pages
+- Admin panel manages bilingual content for all modules
+
+DIRECTORY STRUCTURE
+-------------------
+/
+├── admin/           # Admin Dashboard
+│   ├── includes/    # Admin header/footer
+│   ├── blog.php     # Blog management
+│   ├── products.php # Product management
+│   ├── services.php # Services management
+│   ├── projects.php # Portfolio management
+│   ├── testimonials.php # Testimonial management
+│   ├── videos.php   # YouTube video management
+│   ├── inquiries.php # Contact inquiries
+│   ├── subscribers.php # Newsletter subscribers
+│   ├── settings.php # Website settings
+│   ├── pages.php    # Page content management
+│   ├── profile.php  # Admin profile
+│   ├── login.php    # Login page
+│   └── logout.php   # Logout
+├── api/             # API endpoints
+├── config/          # Database config & installer
+├── css/             # Stylesheets
+├── img/             # Images
+├── includes/        # Common header/footer
+├── js/              # JavaScript files
+├── lang/            # Language files (en.php, sw.php)
+├── lib/             # Third-party libraries
+├── uploads/         # User uploaded files
+├── index.php        # Homepage
+├── about.php        # About Us
+├── services.php     # Services
+├── products.php     # Products
+├── projects.php     # Projects
+├── blog.php         # Blog
+├── testimonials.php # Testimonials
+├── contact.php      # Contact Us
+├── 404.php          # Error page
+└── .htaccess        # URL rewriting
+
+ADMIN DASHBOARD FEATURES
+------------------------
+- Dashboard overview with statistics
+- Blog: Create/edit/delete bilingual posts with featured images
+- Products: Manage product catalog with bilingual content, categories, pricing
+- Services: Manage service offerings with icons and descriptions
+- Projects: Portfolio management with client info, locations, completion dates
+- Testimonials: Customer reviews with star ratings and photos
+- Videos: Add YouTube links - videos stream directly from YouTube, no server upload
+- Inquiries: View and manage contact form submissions
+- Subscribers: Manage newsletter subscribers
+- Settings: Company info, contact details, social media links, homepage content, logos/images
+
+FIRST STEPS AFTER INSTALLATION
+-------------------------------
+1. Log in to admin panel: /admin/
+2. Go to Settings - update company name, contact info, social media links
+3. Go to Settings > Logo & Images - upload company logo and favicon
+4. Go to Page Content - update homepage text (English & Kiswahili)
+5. Add services, products, projects via the admin panel
+6. Create blog posts with bilingual content
+7. Add testimonials from clients
+
+SUPPORT
+-------
+For any issues or questions, contact: info@ngalambela.co.tz
+
+CREDITS
+-------
+Based on the Electra HTML template by HTML Codex.
+Transformed into a complete PHP/MySQL CMS for Ngalambela.
+
+Email: mkorihafidhi67@gmail.com
+Password: Mkori339@.
