@@ -57,6 +57,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var mobileSidebar = window.matchMedia('(max-width: 991.98px)');
 
+    // Keep fixed mobile UI aligned with the visible viewport when browser
+    // chrome, zoom, orientation, or the on-screen keyboard changes its size.
+    function updateViewportHeight() {
+        var viewport = window.visualViewport;
+        var height = viewport ? viewport.height : window.innerHeight;
+        if (height) document.documentElement.style.setProperty('--admin-viewport-height', Math.round(height) + 'px');
+    }
+
+    updateViewportHeight();
+    window.addEventListener('resize', updateViewportHeight, { passive: true });
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', updateViewportHeight, { passive: true });
+        window.visualViewport.addEventListener('scroll', updateViewportHeight, { passive: true });
+    }
+
     function updateToggleState() {
         var isMobile = mobileSidebar.matches;
         var isOpen = isMobile
@@ -72,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (mobileSidebar.matches) {
             sidebar.classList.toggle('show');
             overlay.classList.toggle('active');
+            document.body.classList.toggle('admin-sidebar-open', sidebar.classList.contains('show'));
         } else {
             document.body.classList.toggle('sidebar-collapsed');
         }
@@ -81,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function resetSidebarForViewport() {
         sidebar.classList.remove('show');
         overlay.classList.remove('active');
+        document.body.classList.remove('admin-sidebar-open');
         document.body.classList.remove('sidebar-collapsed');
         updateToggleState();
     }
@@ -91,6 +108,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if (overlay) overlay.addEventListener('click', toggleSidebar);
     mobileSidebar.addEventListener('change', resetSidebarForViewport);
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileSidebar.matches && sidebar.classList.contains('show')) {
+            toggleSidebar();
+        }
+    });
 });
 </script>
 <?php

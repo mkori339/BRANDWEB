@@ -29,7 +29,6 @@ $items = $conn->query("SELECT * FROM services ORDER BY sort_order ASC");
 <div class="d-flex justify-content-between align-items-center mb-4"><h4 class="mb-0"><?php echo $edit_item ? 'Edit Service' : 'Manage Services'; ?></h4>
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#itemModal"><i class="fas fa-plus me-1"></i> Add Service</button></div>
 
-<?php if (!$edit_item): ?>
 <div class="card table-card"><div class="card-body p-0"><div class="table-responsive">
     <table class="table table-hover mb-0"><thead class="table-light"><tr><th>#</th><th>Title</th><th>Icon</th><th>Status</th><th>Order</th><th>Actions</th></tr></thead>
     <tbody><?php $i=1; while ($item = $items->fetch_assoc()): ?>
@@ -39,7 +38,6 @@ $items = $conn->query("SELECT * FROM services ORDER BY sort_order ASC");
         <td><?php echo $item['sort_order']; ?></td>
         <td><a href="?edit=<?php echo $item['id']; ?>" class="btn btn-sm btn-outline-primary btn-action"><i class="fas fa-edit"></i></a> <a href="?delete=<?php echo $item['id']; ?>" class="btn btn-sm btn-outline-danger btn-action btn-delete"><i class="fas fa-trash"></i></a></td></tr>
     <?php endwhile; ?></tbody></table></div></div></div>
-<?php endif; ?>
 
 <div class="modal fade" id="itemModal" tabindex="-1"><div class="modal-dialog modal-lg"><div class="modal-content">
     <form method="POST" enctype="multipart/form-data">
@@ -62,7 +60,11 @@ $items = $conn->query("SELECT * FROM services ORDER BY sort_order ASC");
 <?php if ($edit_item): ?>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    var modal = new bootstrap.Modal(document.getElementById('itemModal'));
+    var modalElement = document.getElementById('itemModal');
+    var modal = new bootstrap.Modal(modalElement);
+    modalElement.addEventListener('hidden.bs.modal', function() {
+        window.location.href = 'services.php';
+    });
     modal.show();
 });
 </script>

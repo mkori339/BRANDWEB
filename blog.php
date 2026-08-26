@@ -78,7 +78,7 @@ require_once __DIR__ . '/includes/header.php';
                             <?php echo $current_lang === 'sw' && !empty($single_post['content_sw']) ? $single_post['content_sw'] : $single_post['content_en']; ?>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 blog-sidebar">
                         <!-- Search -->
                         <div class="mb-4 p-4 bg-light rounded">
                             <h5 class="mb-3"><?php echo t('blog_search', 'Search...'); ?></h5>
@@ -178,7 +178,7 @@ require_once __DIR__ . '/includes/header.php';
                             <?php endif; ?>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 blog-sidebar">
                         <!-- Search -->
                         <div class="mb-4 p-4 bg-light rounded">
                             <h5 class="mb-3"><?php echo t('blog_search', 'Search...'); ?></h5>

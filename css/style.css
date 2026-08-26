@@ -129,7 +129,10 @@ img { max-width: 100%; height: auto; }
    ============================================================ */
 .header-top {
   height: 125px;
-  position: relative;
+  /* Keep the public navigation visible while the page is scrolled. */
+  position: sticky;
+  top: 0;
+  z-index: 1030;
   background: var(--white);
 }
 
@@ -157,9 +160,13 @@ img { max-width: 100%; height: auto; }
 }
 
 @media (max-width: 991px) {
-  .header-top { max-height: 80px; }
+  .header-top {
+    height: 80px;
+    min-height: 80px;
+    max-height: none;
+  }
   .navbar { justify-content: space-between; }
-  .header-top .container { max-height: 80px; }
+  .header-top .container { height: 80px; max-height: none; }
   .navbar-brand { display: none; }
 
   .navbar-brand-2 {
@@ -1068,22 +1075,20 @@ h4.text-primary::before {
   .copyright .text-center.text-md-end { text-align: center !important; }
 }
 
-/* Blog sidebar */
-@media (max-width: 991px) { .blog-sidebar { margin-top: 30px; } }
-
 /* ============================================================
    BLOG CONTENT — MOBILE FULL-HEIGHT SIDEBAR
-   Prevents white space below sidebar on short pages
+   Keeps the stacked sidebar full height after mobile zoom changes
    ============================================================ */
 @media (max-width: 991px) {
-  /* Fill remaining viewport height so footer sticks to bottom */
+  /* 100dvh follows the visible mobile viewport; 100vh is the fallback. */
   .blog-content-area {
-    min-height: calc(100vh - 160px); /* header ~80px + footer/copyright ~80px */
+    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
   }
   .blog-content-area > .container {
-    flex: 1 0 auto;
+    flex: 1;
     display: flex;
     flex-direction: column;
   }
@@ -1092,20 +1097,16 @@ h4.text-primary::before {
     display: flex;
     flex-direction: column;
   }
-  /* Sidebar column: stretch to fill remaining space */
-  .blog-content-area .col-lg-4 {
+  /* The sidebar follows the post list and fills any remaining page height. */
+  .blog-content-area .blog-sidebar {
     display: flex;
     flex-direction: column;
+    flex: 1 0 auto;
+    margin-top: 30px;
   }
-  .blog-content-area .col-lg-4 > .mb-4:last-child {
+  .blog-content-area .blog-sidebar > .mb-4:last-child {
     flex: 1;
-  }
-}
-
-/* Small phones — tighten spacing */
-@media (max-width: 575px) {
-  .blog-content-area {
-    min-height: calc(100vh - 120px);
+    margin-bottom: 0 !important;
   }
 }
 
