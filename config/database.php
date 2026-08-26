@@ -1,15 +1,15 @@
 <?php
 // Database Configuration
-define('DB_HOST', 'sql202.infinityfree.com');
-define('DB_USER', 'if0_38914729');
-define('DB_PASS', 'Mkori0339');
-define('DB_NAME', 'if0_38914729_ngalambela');
+// define('DB_HOST', 'sql202.infinityfree.com');
+// define('DB_USER', 'if0_38914729');
+// define('DB_PASS', 'Mkori0339');
+// define('DB_NAME', 'if0_38914729_ngalambela');
 define('DB_SOCKET', '/opt/lampp/var/mysql/mysql.sock');
-// define('DB_HOST', 'localhost');
-// define('DB_USER', 'root');
-// define('DB_PASS', '');
-// define('DB_NAME', 'ngalambela_db');
-// define('DB_SOCKET', '/opt/lampp/var/mysql/mysql.sock');
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'ngalambela_db');
+define('DB_SOCKET', '/opt/lampp/var/mysql/mysql.sock');
 
 
 // Create connection

@@ -55,19 +55,6 @@ img { max-width: 100%; height: auto; }
 .bg-light     { background-color: var(--light) !important; }
 
 /* ============================================================
-   SPINNER
-   ============================================================ */
-#spinner {
-  opacity: 0; visibility: hidden;
-  transition: opacity .5s ease-out, visibility 0s linear .5s;
-  z-index: 99999;
-}
-#spinner.show {
-  transition: opacity .5s ease-out, visibility 0s linear 0s;
-  visibility: visible; opacity: 1;
-}
-
-/* ============================================================
    BACK TO TOP
    ============================================================ */
 .back-to-top {
@@ -1204,5 +1191,5 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
    PRINT CLEANUP
    ============================================================ */
 @media print {
-  .back-to-top, #spinner, .owl-nav { display: none !important; }
+  .back-to-top, .owl-nav { display: none !important; }
 }

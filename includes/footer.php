@@ -63,10 +63,10 @@ $lang_code = $current_lang !== 'en' ? '?lang=' . $current_lang : '';
             <div class="container">
                 <div class="row g-4 align-items-center">
                     <div class="col-md-4 text-center text-md-start mb-md-0">
-                        <span class="text-body"><a href="#" class="border-bottom text-white"><i class="fas fa-copyright text-light me-2"></i><?php echo $company_name; ?></a>, <?php echo t('footer_rights', 'All Rights Reserved.'); ?></span>
+                        <span class="text-body">&copy; <?php echo date('Y'); ?> <?php echo $company_name; ?>. <?php echo t('footer_rights', 'All Rights Reserved.'); ?></span>
                     </div>
                     <div class="col-md-4 text-center text-body">
-                        &copy; <?php echo date('Y'); ?> <?php echo $company_name; ?>. <?php echo t('footer_rights', 'All Rights Reserved.'); ?>
+                        <a href="https://portifolio-psi-fawn-94.vercel.app/" target="_blank" class="text-muted small text-decoration-none">Created by <strong class="text-white">Mkori Tech</strong></a>
                     </div>
                     <div class="col-md-4 text-center text-md-end">
                         <a href="admin/login.php" class="text-muted small text-decoration-none"><i class="fas fa-lock me-1"></i>Admin Login</a>

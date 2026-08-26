@@ -44,13 +44,8 @@ $company_name = getSettingByLang('company_name', $current_lang, 'Ngalambela');
 
     <body>
 
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only"><?php echo t('loading', 'Loading...'); ?></span>
-            </div>
-        </div>
-        <!-- Spinner End -->
+        <!-- Page Loading Progress Bar -->
+        <div id="progressBar" style="position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--primary),#f59e0b);z-index:99999;transition:width 0.3s ease;width:0%;"></div>
 
         <!-- Navbar & Hero Start -->
         <div class="container-fluid header-top">
