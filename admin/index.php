@@ -11,6 +11,7 @@ $inquiries_count = $conn->query("SELECT COUNT(*) as c FROM inquiries")->fetch_as
 $unread_inquiries = $conn->query("SELECT COUNT(*) as c FROM inquiries WHERE is_read = 0")->fetch_assoc()['c'];
 $subscribers_count = $conn->query("SELECT COUNT(*) as c FROM subscribers WHERE status = 'active'")->fetch_assoc()['c'];
 $videos_count = $conn->query("SELECT COUNT(*) as c FROM media_videos")->fetch_assoc()['c'];
+$team_count = $conn->query("SELECT COUNT(*) as c FROM team_members")->fetch_assoc()['c'];
 
 // Recent inquiries
 $recent_inquiries = $conn->query("SELECT * FROM inquiries ORDER BY created_at DESC LIMIT 5");
@@ -18,7 +19,7 @@ $recent_inquiries = $conn->query("SELECT * FROM inquiries ORDER BY created_at DE
 
 <!-- Stats Cards -->
 <div class="row g-4 mb-4">
-    <div class="col-md-6 col-xl-3">
+    <div class="col-lg-4 col-md-6">
         <div class="card stat-card">
             <div class="card-body d-flex align-items-center">
                 <div class="stat-icon bg-primary bg-opacity-10 text-primary me-3">
@@ -31,7 +32,7 @@ $recent_inquiries = $conn->query("SELECT * FROM inquiries ORDER BY created_at DE
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-xl-3">
+    <div class="col-lg-4 col-md-6">
         <div class="card stat-card">
             <div class="card-body d-flex align-items-center">
                 <div class="stat-icon bg-success bg-opacity-10 text-success me-3">
@@ -44,7 +45,7 @@ $recent_inquiries = $conn->query("SELECT * FROM inquiries ORDER BY created_at DE
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-xl-3">
+    <div class="col-lg-4 col-md-6">
         <div class="card stat-card">
             <div class="card-body d-flex align-items-center">
                 <div class="stat-icon bg-warning bg-opacity-10 text-warning me-3">
@@ -57,7 +58,7 @@ $recent_inquiries = $conn->query("SELECT * FROM inquiries ORDER BY created_at DE
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-xl-3">
+    <div class="col-lg-4 col-md-6">
         <div class="card stat-card">
             <div class="card-body d-flex align-items-center">
                 <div class="stat-icon bg-info bg-opacity-10 text-info me-3">
@@ -70,10 +71,7 @@ $recent_inquiries = $conn->query("SELECT * FROM inquiries ORDER BY created_at DE
             </div>
         </div>
     </div>
-</div>
-
-<div class="row g-4 mb-4">
-    <div class="col-md-4">
+    <div class="col-lg-4 col-md-6">
         <div class="card stat-card">
             <div class="card-body d-flex align-items-center">
                 <div class="stat-icon bg-danger bg-opacity-10 text-danger me-3">
@@ -86,7 +84,7 @@ $recent_inquiries = $conn->query("SELECT * FROM inquiries ORDER BY created_at DE
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-lg-4 col-md-6">
         <div class="card stat-card">
             <div class="card-body d-flex align-items-center">
                 <div class="stat-icon bg-secondary bg-opacity-10 text-secondary me-3">
@@ -99,7 +97,7 @@ $recent_inquiries = $conn->query("SELECT * FROM inquiries ORDER BY created_at DE
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-lg-4 col-md-6">
         <div class="card stat-card">
             <div class="card-body d-flex align-items-center">
                 <div class="stat-icon bg-primary bg-opacity-10 text-primary me-3">
@@ -108,6 +106,19 @@ $recent_inquiries = $conn->query("SELECT * FROM inquiries ORDER BY created_at DE
                 <div>
                     <h3 class="mb-0"><?php echo $subscribers_count; ?></h3>
                     <small class="text-muted">Subscribers</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="card stat-card">
+            <div class="card-body d-flex align-items-center">
+                <div class="stat-icon bg-dark bg-opacity-10 text-dark me-3">
+                    <i class="fas fa-users-cog"></i>
+                </div>
+                <div>
+                    <h3 class="mb-0"><?php echo $team_count; ?></h3>
+                    <small class="text-muted">Team Members</small>
                 </div>
             </div>
         </div>

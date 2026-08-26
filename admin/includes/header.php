@@ -36,31 +36,51 @@ if (isLoggedIn()) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         * { font-family: 'Inter', sans-serif; }
-        .sidebar { min-height: 100vh; background: #1a1c23; width: 250px; position: fixed; top: 0; left: 0; z-index: 100; transition: all 0.3s; }
-        .sidebar .nav-link { color: #8b8d97; padding: 12px 20px; display: flex; align-items: center; border-radius: 8px; margin: 2px 10px; transition: all 0.2s; }
+        .sidebar { height: 100vh; background: #1a1c23; width: 260px; position: fixed; top: 0; left: 0; z-index: 1040; transition: all 0.3s ease; overflow-y: auto; overflow-x: hidden; }
+        .sidebar::-webkit-scrollbar { width: 5px; }
+        .sidebar::-webkit-scrollbar-track { background: transparent; }
+        .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 10px; }
+        .sidebar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+        .sidebar .nav-link { color: #8b8d97; padding: 11px 20px; display: flex; align-items: center; border-radius: 8px; margin: 2px 10px; transition: all 0.2s; font-size: 14px; }
         .sidebar .nav-link:hover, .sidebar .nav-link.active { color: #fff; background: rgba(13, 110, 253, 0.15); }
-        .sidebar .nav-link i { width: 20px; margin-right: 10px; }
-        .sidebar-brand { padding: 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .sidebar .nav-link i { width: 20px; margin-right: 10px; text-align: center; }
+        .sidebar-brand { padding: 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; background: #1a1c23; z-index: 1; }
         .sidebar-brand h4 { color: #fff; margin: 0; font-size: 18px; }
         .sidebar-brand small { color: #8b8d97; }
-        .main-content { margin-left: 250px; background: #f5f6fa; min-height: 100vh; }
-        .top-navbar { background: #fff; padding: 15px 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
-        .stat-card { border: none; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s; }
-        .stat-card:hover { transform: translateY(-2px); }
-        .stat-card .stat-icon { width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+        .sidebar-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1039; }
+        .sidebar-overlay.active { display: block; }
+        .main-content { margin-left: 260px; background: #f5f6fa; min-height: 100vh; transition: margin-left 0.3s ease; }
+        .sidebar.collapsed { width: 0; left: -260px; }
+        .sidebar.collapsed ~ .main-content { margin-left: 0; }
+        .top-navbar { background: #fff; padding: 12px 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1038; }
+        .sidebar-toggle { background: none; border: none; font-size: 20px; color: #333; cursor: pointer; padding: 6px 10px; border-radius: 6px; transition: background 0.2s; }
+        .sidebar-toggle:hover { background: #f0f0f0; }
+        .stat-card { border: none; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s; height: 100%; }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 4px 15px rgba(0,0,0,0.12); }
+        .stat-card .card-body { padding: 20px; }
+        .stat-card .stat-icon { width: 56px; height: 56px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+        .stat-card h3 { font-size: 28px; font-weight: 700; }
+        .stat-card small { font-size: 13px; }
         .table-card { border: none; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
         .table-card .card-header { background: #fff; border-bottom: 1px solid #eee; padding: 15px 20px; }
         .form-card { border: none; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
         .form-card .card-header { background: #fff; border-bottom: 1px solid #eee; padding: 15px 20px; }
         .btn-action { padding: 4px 8px; font-size: 12px; }
-        @media (max-width: 768px) { .sidebar { width: 0; overflow: hidden; } .main-content { margin-left: 0; } }
+        @media (max-width: 991.98px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.show { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+        }
     </style>
 </head>
 <body>
 <?php if ($current_admin_page !== 'login' && $current_admin_page !== 'install'): ?>
 <div class="d-flex">
+    <!-- Sidebar Overlay (mobile) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
     <!-- Sidebar -->
-    <div class="sidebar d-none d-md-block">
+    <div class="sidebar" id="adminSidebar">
         <div class="sidebar-brand">
             <h4><i class="fas fa-balance-scale text-primary me-2"></i><?php echo SITE_NAME; ?></h4>
             <small>Admin Dashboard</small>
@@ -116,7 +136,10 @@ if (isLoggedIn()) {
     <!-- Main Content -->
     <div class="main-content flex-grow-1">
         <div class="top-navbar d-flex justify-content-between align-items-center">
-            <div>
+            <div class="d-flex align-items-center">
+                <button class="sidebar-toggle me-2" id="sidebarToggle" title="Toggle Sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <h5 class="mb-0"><?php echo isset($admin_page_title) ? $admin_page_title : 'Dashboard'; ?></h5>
             </div>
             <div class="d-flex align-items-center">
