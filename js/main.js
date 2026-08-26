@@ -39,37 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
 (function ($) {
     "use strict";
 
-    // Top progress bar - complete on full page load
-    var bar = document.getElementById('progressBar');
-    if (bar) {
-        window.addEventListener('load', function() {
-            bar.style.width = '100%';
-            setTimeout(function() {
-                bar.style.opacity = '0';
-                setTimeout(function() {
-                    bar.style.width = '0%';
-                    bar.style.opacity = '1';
-                }, 300);
-            }, 300);
-        });
-    }
-
-    // Show progress bar on internal link clicks
-    $(document).on('click', 'a[href]', function(e) {
-        var href = $(this).attr('href');
-        if (!href || href.startsWith('#') || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:') || $(this).attr('target') === '_blank' || href.includes('data-bs-toggle') || $(this).hasClass('back-to-top')) return;
-        if (href.indexOf('admin/') !== -1 || href.indexOf('admin.php') !== -1) return;
-        if (bar) {
-            bar.style.width = '0%';
-            bar.style.opacity = '1';
-            bar.style.transition = 'none';
-            setTimeout(function() {
-                bar.style.transition = 'width 0.8s ease';
-                bar.style.width = '90%';
-            }, 10);
-        }
-    });
-
     // WOW animations
     new WOW().init();
 
