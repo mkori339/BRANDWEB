@@ -24,9 +24,21 @@ if ($conn->connect_error) {
 $conn->query("CREATE DATABASE IF NOT EXISTS " . DB_NAME . " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
 $conn->select_db(DB_NAME);
 
-// Site configuration ngalambela_dbconstants
+// Site configuration constants
 define('SITE_NAME', 'Ngalambela');
-define('SITE_URL', 'http://localhost/brandweb');
+
+// Auto-detect the site URL from the current request
+if (isset($_SERVER['HTTP_HOST'])) {
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    // Detect the base path (e.g. /brandweb if hosted in a subdirectory)
+    $script_dir = dirname($_SERVER['SCRIPT_NAME']);
+    $base_path = preg_replace('#/admin$#', '', $script_dir); // remove /admin if already inside admin
+    $base_path = preg_replace('#/config$#', '', $base_path); // remove /config if inside config
+    $base_path = rtrim($base_path, '/');
+    define('SITE_URL', $protocol . '://' . $_SERVER['HTTP_HOST'] . $base_path);
+} else {
+    define('SITE_URL', 'http://localhost/brandweb');
+}
 define('ADMIN_URL', SITE_URL . '/admin');
 define('UPLOAD_DIR', __DIR__ . '/../uploads/');
 

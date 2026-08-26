@@ -40,7 +40,7 @@ require_once __DIR__ . '/includes/header.php';
                                     </div>
                                     <h4 class="mb-3"><?php echo htmlspecialchars($title); ?></h4>
                                     <p class="mb-4"><?php echo htmlspecialchars($desc); ?></p>
-                                    <a href="contact.php<?php echo $current_lang !== 'en' ? '?lang=' . $current_lang : ''; ?>" class="btn btn-primary py-2 px-4"><?php echo t('services_readmore', 'Read More'); ?></a>
+                                    <a href="contact.php?service=<?php echo urlencode($service['title_en']); ?><?php echo $current_lang !== 'en' ? '&lang=' . $current_lang : ''; ?>" class="btn btn-primary py-2 px-4"><?php echo t('services_readmore', 'Read More'); ?></a>
                                 </div>
                             </div>
                         <?php $i++; endwhile; ?>
