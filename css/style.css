@@ -32,7 +32,11 @@ body {
   line-height: 1.7;
   color: #2d3748;
   background: var(--white);
-  overflow-x: hidden;
+  /* The public header is viewport-fixed; reserve its desktop height. */
+  padding-top: 125px;
+  /* clip prevents horizontal bleed without creating a scroll container that
+     can disable sticky navigation on mobile Safari. */
+  overflow-x: clip;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -129,9 +133,12 @@ img { max-width: 100%; height: auto; }
    ============================================================ */
 .header-top {
   height: 125px;
-  /* Keep the public navigation visible while the page is scrolled. */
-  position: sticky;
+  /* Keep the public navigation visible on every device/browser. */
+  position: fixed;
   top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
   z-index: 1030;
   background: var(--white);
 }
@@ -165,6 +172,7 @@ img { max-width: 100%; height: auto; }
     min-height: 80px;
     max-height: none;
   }
+  body { padding-top: 80px; }
   .navbar { justify-content: space-between; }
   .header-top .container { height: 80px; max-height: none; }
   .navbar-brand { display: none; }
@@ -265,7 +273,7 @@ img { max-width: 100%; height: auto; }
     display: flex;
     margin-top: 20px;
     padding-bottom: 20px;
-    margin-left: 50px;
+    margin-left: 0;
     background: var(--light);
     border-radius: 0 0 var(--radius-md) var(--radius-md);
     box-shadow: var(--shadow-md);

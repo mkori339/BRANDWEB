@@ -10,8 +10,6 @@ define('DB_SOCKET', '/opt/lampp/var/mysql/mysql.sock');
 // define('DB_PASS', '');
 // define('DB_NAME', 'ngalambela_db');
 // define('DB_SOCKET', '/opt/lampp/var/mysql/mysql.sock');
-
-
 // Create connection
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, 3306, DB_SOCKET);
 
