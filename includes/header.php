@@ -45,7 +45,8 @@ $company_name = getSettingByLang('company_name', $current_lang, 'Ngalambela');
     <body>
 
         <!-- Page Loading Progress Bar -->
-        <div id="progressBar" style="position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--primary),#f59e0b);z-index:99999;transition:width 0.3s ease;width:0%;"></div>
+        <div id="progressBar" style="position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--primary),#f59e0b);z-index:99999;transition:width 0.4s ease;width:0%;"></div>
+        <script>document.getElementById('progressBar').style.width='65%';</script>
 
         <!-- Navbar & Hero Start -->
         <div class="container-fluid header-top">
