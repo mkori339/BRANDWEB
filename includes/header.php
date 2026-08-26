@@ -22,6 +22,9 @@ $company_name = getSettingByLang('company_name', $current_lang, 'Ngalambela');
         <meta content="weighing scales, calibration, maintenance, manufacturing, Tanzania, Mwanza, Ngalambela, vioo vya uzito" name="keywords">
         <meta content="<?php echo t('hero_desc', 'Professional weighing scale solutions in Tanzania'); ?>" name="description">
 
+        <!-- Set before the body paints so WOW elements do not flash unanimated. -->
+        <script>document.documentElement.classList.add('wow-enabled');</script>
+
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

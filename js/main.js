@@ -39,8 +39,12 @@ document.addEventListener('DOMContentLoaded', function() {
 (function ($) {
     "use strict";
 
-    // WOW animations
-    new WOW().init();
+    // Animate each element once per page load. Disabling the live observer and
+    // animation reset prevents elements from being hidden and replayed again.
+    new WOW({
+        live: false,
+        resetAnimation: false
+    }).init();
 
     // Header carousel
     $(".header-carousel").owlCarousel({

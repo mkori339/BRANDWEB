@@ -56,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!sidebar || !overlay || !toggleBtn) return;
 
     var mobileSidebar = window.matchMedia('(max-width: 991.98px)');
-    var topNavbar = document.querySelector('.top-navbar');
 
     // Keep fixed mobile UI aligned with the visible viewport when browser
     // chrome, zoom, orientation, or the on-screen keyboard changes its size.
@@ -66,27 +65,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (height) document.documentElement.style.setProperty('--admin-viewport-height', Math.round(height) + 'px');
     }
 
-    // The bar can become taller when a narrow phone wraps its title/actions.
-    // Reserve its measured height so page content never starts underneath it.
-    function updateTopbarHeight() {
-        if (!topNavbar) return;
-        var height = topNavbar.getBoundingClientRect().height;
-        if (height) document.documentElement.style.setProperty('--admin-topbar-height', Math.ceil(height) + 'px');
-    }
-
-    function updateLayoutMetrics() {
-        updateViewportHeight();
-        updateTopbarHeight();
-    }
-
-    updateLayoutMetrics();
-    window.addEventListener('resize', updateLayoutMetrics, { passive: true });
+    updateViewportHeight();
+    window.addEventListener('resize', updateViewportHeight, { passive: true });
     if (window.visualViewport) {
-        window.visualViewport.addEventListener('resize', updateLayoutMetrics, { passive: true });
-        window.visualViewport.addEventListener('scroll', updateLayoutMetrics, { passive: true });
-    }
-    if (topNavbar && window.ResizeObserver) {
-        new ResizeObserver(updateTopbarHeight).observe(topNavbar);
+        window.visualViewport.addEventListener('resize', updateViewportHeight, { passive: true });
+        window.visualViewport.addEventListener('scroll', updateViewportHeight, { passive: true });
     }
 
     function updateToggleState() {

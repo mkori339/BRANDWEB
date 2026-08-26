@@ -32,10 +32,7 @@ body {
   line-height: 1.7;
   color: #2d3748;
   background: var(--white);
-  /* The public header is viewport-fixed; reserve its desktop height. */
-  padding-top: 125px;
-  /* clip prevents horizontal bleed without creating a scroll container that
-     can disable sticky navigation on mobile Safari. */
+  /* Prevent horizontal bleed on narrow screens without creating a scrollbar. */
   overflow-x: clip;
 }
 
@@ -50,6 +47,11 @@ a { color: var(--primary); text-decoration: none; transition: color var(--transi
 a:hover { color: var(--primary-dark); }
 
 img { max-width: 100%; height: auto; }
+
+/* WOW elements start hidden before its script initializes, preventing a
+   normal-paint -> hidden -> animated flash on every page load. */
+.wow-enabled .wow { visibility: hidden; }
+.wow-enabled .wow.animated { visibility: visible; }
 
 /* Override Bootstrap primary colors */
 .text-primary { color: var(--primary) !important; }
@@ -133,13 +135,7 @@ img { max-width: 100%; height: auto; }
    ============================================================ */
 .header-top {
   height: 125px;
-  /* Keep the public navigation visible on every device/browser. */
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1030;
+  position: relative;
   background: var(--white);
 }
 
@@ -172,7 +168,6 @@ img { max-width: 100%; height: auto; }
     min-height: 80px;
     max-height: none;
   }
-  body { padding-top: 80px; }
   .navbar { justify-content: space-between; }
   .header-top .container { height: 80px; max-height: none; }
   .navbar-brand { display: none; }
