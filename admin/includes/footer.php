@@ -52,13 +52,45 @@ document.addEventListener('DOMContentLoaded', function() {
     var overlay = document.getElementById('sidebarOverlay');
     var toggleBtn = document.getElementById('sidebarToggle');
 
-    function toggleSidebar() {
-        sidebar.classList.toggle('show');
-        overlay.classList.toggle('active');
+    // Login/install pages do not include the admin shell.
+    if (!sidebar || !overlay || !toggleBtn) return;
+
+    var mobileSidebar = window.matchMedia('(max-width: 991.98px)');
+
+    function updateToggleState() {
+        var isMobile = mobileSidebar.matches;
+        var isOpen = isMobile
+            ? sidebar.classList.contains('show')
+            : !document.body.classList.contains('sidebar-collapsed');
+
+        toggleBtn.setAttribute('aria-expanded', String(isOpen));
+        toggleBtn.setAttribute('aria-label', isOpen ? 'Hide sidebar' : 'Show sidebar');
+        toggleBtn.title = isOpen ? 'Hide Sidebar' : 'Show Sidebar';
     }
 
-    if (toggleBtn) toggleBtn.addEventListener('click', toggleSidebar);
+    function toggleSidebar() {
+        if (mobileSidebar.matches) {
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('active');
+        } else {
+            document.body.classList.toggle('sidebar-collapsed');
+        }
+        updateToggleState();
+    }
+
+    function resetSidebarForViewport() {
+        sidebar.classList.remove('show');
+        overlay.classList.remove('active');
+        document.body.classList.remove('sidebar-collapsed');
+        updateToggleState();
+    }
+
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', toggleSidebar);
+        updateToggleState();
+    }
     if (overlay) overlay.addEventListener('click', toggleSidebar);
+    mobileSidebar.addEventListener('change', resetSidebarForViewport);
 });
 </script>
 <?php

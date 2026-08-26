@@ -35,8 +35,10 @@ if (isLoggedIn()) {
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        html, body { min-height: 100%; }
         * { font-family: 'Inter', sans-serif; }
-        .sidebar { height: 100vh; background: #1a1c23; width: 260px; position: fixed; top: 0; left: 0; z-index: 1050; transition: transform 0.3s ease; overflow-y: auto; overflow-x: hidden; }
+        .admin-shell { min-height: 100vh; min-height: 100dvh; }
+        .sidebar { height: 100vh; height: 100dvh; background: #1a1c23; width: 260px; position: fixed; top: 0; left: 0; z-index: 1050; transition: transform 0.3s ease; overflow-y: auto; overflow-x: hidden; }
         .sidebar::-webkit-scrollbar { width: 5px; }
         .sidebar::-webkit-scrollbar-track { background: transparent; }
         .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 10px; }
@@ -49,7 +51,9 @@ if (isLoggedIn()) {
         .sidebar-brand small { color: #8b8d97; }
         .sidebar-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1049; }
         .sidebar-overlay.active { display: block; }
-        .main-content { margin-left: 260px; background: #f5f6fa; min-height: 100vh; transition: margin-left 0.3s ease; }
+        .main-content { margin-left: 260px; background: #f5f6fa; min-height: 100vh; min-height: 100dvh; transition: margin-left 0.3s ease; }
+        body.sidebar-collapsed .sidebar { transform: translateX(-100%); }
+        body.sidebar-collapsed .main-content { margin-left: 0; }
         .top-navbar { background: #fff; padding: 12px 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1048; }
         .sidebar-toggle { background: none; border: none; font-size: 20px; color: #333; cursor: pointer; padding: 6px 10px; border-radius: 6px; transition: background 0.2s; }
         .sidebar-toggle:hover { background: #f0f0f0; }
@@ -72,6 +76,7 @@ if (isLoggedIn()) {
         @media (max-width: 991.98px) {
             .sidebar { transform: translateX(-100%); width: 280px; }
             .sidebar.show { transform: translateX(0); }
+            body.sidebar-collapsed .sidebar { transform: translateX(-100%); }
             .main-content { margin-left: 0 !important; }
             .top-navbar { padding: 12px 15px; }
         }
@@ -85,7 +90,7 @@ if (isLoggedIn()) {
 </head>
 <body>
 <?php if ($current_admin_page !== 'login' && $current_admin_page !== 'install'): ?>
-<div class="d-flex">
+<div class="d-flex admin-shell">
     <!-- Sidebar Overlay (mobile) -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
