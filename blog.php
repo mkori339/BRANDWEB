@@ -54,7 +54,7 @@ require_once __DIR__ . '/includes/header.php';
 
 <?php if ($single_post): ?>
         <!-- Single Blog Post Start -->
-        <div class="container-fluid py-5">
+        <div class="container-fluid py-5 blog-content-area">
             <div class="container py-5">
                 <div class="row g-5">
                     <div class="col-lg-8">
@@ -132,7 +132,7 @@ require_once __DIR__ . '/includes/header.php';
         <!-- Single Blog Post End -->
 <?php else: ?>
         <!-- Blog List Start -->
-        <div class="container-fluid py-5">
+        <div class="container-fluid py-5 blog-content-area">
             <div class="container py-5">
                 <div class="d-flex flex-column mx-auto text-center mb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
                     <h4 class="text-primary"><?php echo t('blog_label', 'Latest News'); ?></h4>

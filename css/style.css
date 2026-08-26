@@ -1071,6 +1071,44 @@ h4.text-primary::before {
 /* Blog sidebar */
 @media (max-width: 991px) { .blog-sidebar { margin-top: 30px; } }
 
+/* ============================================================
+   BLOG CONTENT — MOBILE FULL-HEIGHT SIDEBAR
+   Prevents white space below sidebar on short pages
+   ============================================================ */
+@media (max-width: 991px) {
+  /* Fill remaining viewport height so footer sticks to bottom */
+  .blog-content-area {
+    min-height: calc(100vh - 160px); /* header ~80px + footer/copyright ~80px */
+    display: flex;
+    flex-direction: column;
+  }
+  .blog-content-area > .container {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .blog-content-area .row.g-5 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  /* Sidebar column: stretch to fill remaining space */
+  .blog-content-area .col-lg-4 {
+    display: flex;
+    flex-direction: column;
+  }
+  .blog-content-area .col-lg-4 > .mb-4:last-child {
+    flex: 1;
+  }
+}
+
+/* Small phones — tighten spacing */
+@media (max-width: 575px) {
+  .blog-content-area {
+    min-height: calc(100vh - 120px);
+  }
+}
+
 /* Contact */
 @media (max-width: 767px) {
   .contact .col-lg-12.col-xl-6 { width: 100%; }
