@@ -18,106 +18,106 @@ $recent_inquiries = $conn->query("SELECT * FROM inquiries ORDER BY created_at DE
 ?>
 
 <!-- Stats Cards -->
-<div class="row g-4 mb-4">
-    <div class="col-lg-4 col-md-6">
+<div class="row g-3 g-md-4 mb-4">
+    <div class="col-6 col-lg-4">
         <div class="card stat-card">
-            <div class="card-body d-flex align-items-center">
-                <div class="stat-icon bg-primary bg-opacity-10 text-primary me-3">
+            <div class="card-body">
+                <div class="stat-icon me-3" style="background:#e7f1ff;color:#0d6efd;">
                     <i class="fas fa-newspaper"></i>
                 </div>
                 <div>
-                    <h3 class="mb-0"><?php echo $blog_count; ?></h3>
+                    <h3><?php echo $blog_count; ?></h3>
                     <small class="text-muted">Blog Posts</small>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-6">
+    <div class="col-6 col-lg-4">
         <div class="card stat-card">
-            <div class="card-body d-flex align-items-center">
-                <div class="stat-icon bg-success bg-opacity-10 text-success me-3">
+            <div class="card-body">
+                <div class="stat-icon me-3" style="background:#d1e7dd;color:#198754;">
                     <i class="fas fa-box"></i>
                 </div>
                 <div>
-                    <h3 class="mb-0"><?php echo $products_count; ?></h3>
+                    <h3><?php echo $products_count; ?></h3>
                     <small class="text-muted">Products</small>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-6">
+    <div class="col-6 col-lg-4">
         <div class="card stat-card">
-            <div class="card-body d-flex align-items-center">
-                <div class="stat-icon bg-warning bg-opacity-10 text-warning me-3">
+            <div class="card-body">
+                <div class="stat-icon me-3" style="background:#fff3cd;color:#ffc107;">
                     <i class="fas fa-project-diagram"></i>
                 </div>
                 <div>
-                    <h3 class="mb-0"><?php echo $projects_count; ?></h3>
+                    <h3><?php echo $projects_count; ?></h3>
                     <small class="text-muted">Projects</small>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-6">
+    <div class="col-6 col-lg-4">
         <div class="card stat-card">
-            <div class="card-body d-flex align-items-center">
-                <div class="stat-icon bg-info bg-opacity-10 text-info me-3">
+            <div class="card-body">
+                <div class="stat-icon me-3" style="background:#cff4fc;color:#0dcaf0;">
                     <i class="fas fa-envelope"></i>
                 </div>
                 <div>
-                    <h3 class="mb-0"><?php echo $inquiries_count; ?></h3>
+                    <h3><?php echo $inquiries_count; ?></h3>
                     <small class="text-muted">Inquiries <span class="badge bg-danger"><?php echo $unread_inquiries; ?> new</span></small>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-6">
+    <div class="col-6 col-lg-4">
         <div class="card stat-card">
-            <div class="card-body d-flex align-items-center">
-                <div class="stat-icon bg-danger bg-opacity-10 text-danger me-3">
+            <div class="card-body">
+                <div class="stat-icon me-3" style="background:#f8d7da;color:#dc3545;">
                     <i class="fas fa-star"></i>
                 </div>
                 <div>
-                    <h3 class="mb-0"><?php echo $testimonials_count; ?></h3>
+                    <h3><?php echo $testimonials_count; ?></h3>
                     <small class="text-muted">Testimonials</small>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-6">
+    <div class="col-6 col-lg-4">
         <div class="card stat-card">
-            <div class="card-body d-flex align-items-center">
-                <div class="stat-icon bg-secondary bg-opacity-10 text-secondary me-3">
+            <div class="card-body">
+                <div class="stat-icon me-3" style="background:#e2e3e5;color:#6c757d;">
                     <i class="fas fa-video"></i>
                 </div>
                 <div>
-                    <h3 class="mb-0"><?php echo $videos_count; ?></h3>
+                    <h3><?php echo $videos_count; ?></h3>
                     <small class="text-muted">Videos</small>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-6">
+    <div class="col-6 col-lg-4">
         <div class="card stat-card">
-            <div class="card-body d-flex align-items-center">
-                <div class="stat-icon bg-primary bg-opacity-10 text-primary me-3">
+            <div class="card-body">
+                <div class="stat-icon me-3" style="background:#e7f1ff;color:#0d6efd;">
                     <i class="fas fa-users"></i>
                 </div>
                 <div>
-                    <h3 class="mb-0"><?php echo $subscribers_count; ?></h3>
+                    <h3><?php echo $subscribers_count; ?></h3>
                     <small class="text-muted">Subscribers</small>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-6">
+    <div class="col-6 col-lg-4">
         <div class="card stat-card">
-            <div class="card-body d-flex align-items-center">
-                <div class="stat-icon bg-dark bg-opacity-10 text-dark me-3">
+            <div class="card-body">
+                <div class="stat-icon me-3" style="background:#d1d5db;color:#212529;">
                     <i class="fas fa-users-cog"></i>
                 </div>
                 <div>
-                    <h3 class="mb-0"><?php echo $team_count; ?></h3>
+                    <h3><?php echo $team_count; ?></h3>
                     <small class="text-muted">Team Members</small>
                 </div>
             </div>

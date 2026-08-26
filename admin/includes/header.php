@@ -36,7 +36,7 @@ if (isLoggedIn()) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         * { font-family: 'Inter', sans-serif; }
-        .sidebar { height: 100vh; background: #1a1c23; width: 260px; position: fixed; top: 0; left: 0; z-index: 1040; transition: all 0.3s ease; overflow-y: auto; overflow-x: hidden; }
+        .sidebar { height: 100vh; background: #1a1c23; width: 260px; position: fixed; top: 0; left: 0; z-index: 1050; transition: transform 0.3s ease; overflow-y: auto; overflow-x: hidden; }
         .sidebar::-webkit-scrollbar { width: 5px; }
         .sidebar::-webkit-scrollbar-track { background: transparent; }
         .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 10px; }
@@ -47,29 +47,39 @@ if (isLoggedIn()) {
         .sidebar-brand { padding: 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; background: #1a1c23; z-index: 1; }
         .sidebar-brand h4 { color: #fff; margin: 0; font-size: 18px; }
         .sidebar-brand small { color: #8b8d97; }
-        .sidebar-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1039; }
+        .sidebar-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1049; }
         .sidebar-overlay.active { display: block; }
         .main-content { margin-left: 260px; background: #f5f6fa; min-height: 100vh; transition: margin-left 0.3s ease; }
-        .sidebar.collapsed { width: 0; left: -260px; }
-        .sidebar.collapsed ~ .main-content { margin-left: 0; }
-        .top-navbar { background: #fff; padding: 12px 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1038; }
+        .top-navbar { background: #fff; padding: 12px 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1048; }
         .sidebar-toggle { background: none; border: none; font-size: 20px; color: #333; cursor: pointer; padding: 6px 10px; border-radius: 6px; transition: background 0.2s; }
         .sidebar-toggle:hover { background: #f0f0f0; }
-        .stat-card { border: none; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s; height: 100%; }
+        .stat-card { border: none; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s; background: #fff; }
         .stat-card:hover { transform: translateY(-3px); box-shadow: 0 4px 15px rgba(0,0,0,0.12); }
-        .stat-card .card-body { padding: 20px; }
-        .stat-card .stat-icon { width: 56px; height: 56px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
-        .stat-card h3 { font-size: 28px; font-weight: 700; }
+        .stat-card .card-body { padding: 20px; display: flex; align-items: center; }
+        .stat-card .stat-icon {
+            width: 56px; height: 56px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; flex-shrink: 0;
+        }
+        .stat-card .stat-icon i { line-height: 1; }
+        .stat-card h3 { font-size: 28px; font-weight: 700; margin-bottom: 0 !important; }
         .stat-card small { font-size: 13px; }
-        .table-card { border: none; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .table-card { border: none; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); background: #fff; }
         .table-card .card-header { background: #fff; border-bottom: 1px solid #eee; padding: 15px 20px; }
-        .form-card { border: none; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .form-card { border: none; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); background: #fff; }
         .form-card .card-header { background: #fff; border-bottom: 1px solid #eee; padding: 15px 20px; }
         .btn-action { padding: 4px 8px; font-size: 12px; }
         @media (max-width: 991.98px) {
-            .sidebar { transform: translateX(-100%); }
+            .sidebar { transform: translateX(-100%); width: 280px; }
             .sidebar.show { transform: translateX(0); }
-            .main-content { margin-left: 0; }
+            .main-content { margin-left: 0 !important; }
+            .top-navbar { padding: 12px 15px; }
+        }
+        @media (max-width: 575.98px) {
+            .sidebar { width: 85vw; max-width: 300px; }
+            .stat-card .card-body { padding: 15px; }
+            .stat-card .stat-icon { width: 48px; height: 48px; font-size: 20px; }
+            .stat-card h3 { font-size: 22px; }
         }
     </style>
 </head>
